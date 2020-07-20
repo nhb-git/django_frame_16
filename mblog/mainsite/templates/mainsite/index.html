@@ -1,22 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>欢迎光临我的博客</title>
-</head>
-<body>
-    <h1>欢迎光临我的博客</h1>
-    <hr>
-    {% for post in posts %}
-        <p style="font-family: 微软雅黑;font-size: 16pt;font-weight: bold;">
-            {{ post.title }}
-        </p>
-        <p style="font-family: 微软雅黑;font-size: 10pt;letter-spacing: 1pt;">
-            {{ post.body }}
-        </p>
-    {% endfor %}
+{% extends "mainsite/base.html" %}
+{% load markdown_deux_tags %}
 
-    <hr>
-    <h3>现在时刻：{{ now }}</h3>
-</body>
-</html>
+{% block title %}欢迎光临我的博客{% endblock %}
+
+{% block headmessage %}
+    <h3 style="font-family: 楷体;">本站文章列表</h3>
+{% endblock %}
+
+{% block content %}
+    {% for post in posts %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <p style="font-family: 微软雅黑;font-size: 14pt;font-weight: bold">
+                    <a href="{% url 'showpost' post.slug %}">{{ post.title }}</a>
+                </p>
+            </div>
+            <div class="panel-body" style="background-color:#ffffdd;">
+                <p style="font-family: 微软雅黑;font-size: 12pt;">{{ post.body|markdown|truncatechars:20 }}</p>
+            </div>
+            <div class="panel-footer" style="background-color:#efefef;">
+                <p>发布时间：{{ post.pub_date|date:'Y M d, h:m:s' }}</p>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}
+
+
