@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
-from mainsite.views import homepage, showpost
+from mainsite.views import homepage, showpost, register
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path(r'^$', homepage),
     re_path(r'post/(?P<slug>\w+)$', showpost, name='showpost'),
+    re_path(r'register/$', register),
 ]
