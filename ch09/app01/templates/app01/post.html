@@ -1,0 +1,14 @@
+<!-- register.html -->
+{% extends "mainsite/base.html" %}
+
+{% block title %}
+    发布页面
+{% endblock %}
+
+{% block content %}
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success btn-reg">注册</button>
+    </form>
+{% endblock %}
