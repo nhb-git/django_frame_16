@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mainsite.apps.MainsiteConfig',
     'markdown_deux',
+    'captcha',
 ]
 
 MIDDLEWARE = [

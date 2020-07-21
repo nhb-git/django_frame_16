@@ -6,6 +6,8 @@
 from django import forms
 from django.core.exceptions import ValidationError
 from django.forms import widgets
+from .models import Post
+from captcha.fields import CaptchaField
 
 
 class ContactForm(forms.Form):
@@ -40,3 +42,24 @@ class ContactForm(forms.Form):
     def clean_user_name(self):
         user = self.cleaned_data.get('username')
         raise ValidationError('用户名不存在')
+
+
+class PostForm(forms.ModelForm):
+    captcha = CaptchaField()
+
+    class Meta:
+        model = Post
+        fields = ['title', 'slug', 'body']
+
+    def __init__(self, *args, **kwargs):
+        super(PostForm, self).__init__(*args, **kwargs)
+
+        for name, field in self.fields.items():
+            field.widget.attrs['class'] = 'form-control'
+            field.widget.attrs['placeholder'] = field.label
+        self.fields['captcha'].label = '确定你不是机器人'
+        self.fields['captcha'].widget.attrs['placeholder'] = '请输入验证码'
+
+
+    # def clean_body(self):
+    #     pass

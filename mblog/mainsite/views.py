@@ -2,6 +2,7 @@ from django.shortcuts import render, HttpResponse, loader, redirect
 from .models import Post
 from datetime import datetime
 from .forms import ContactForm
+from .forms import PostForm
 
 
 def homepage(request):
@@ -24,6 +25,20 @@ def showpost(request, slug):
 
 
 def register(request):
-    form = ContactForm()
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+        if form.is_valid():
+            return HttpResponse('post')
     if request.method == 'GET':
-        return render(request, 'mainsite/register.html', locals())
+        form = ContactForm()
+    return render(request, 'mainsite/register.html', locals())
+
+
+def post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            return HttpResponse('post')
+    if request.method == 'GET':
+        form = PostForm()
+    return render(request, 'mainsite/post.html', locals())

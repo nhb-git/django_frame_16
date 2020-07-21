@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block content %}
-    <form action="#" method="post">
+    <form action="" method="post">
         {% csrf_token %}
         <div class="form-group">
             {{ form.user_name }}
@@ -20,6 +20,6 @@
             {{ form.user_message }}
             <span class="help-block error pull-right">{{ form.user_message.errors.0 }}</span>
         </div>
-        <button type="button" class="btn btn-success btn-reg">注册</button>
+        <button type="submit" class="btn btn-success btn-reg">注册</button>
     </form>
 {% endblock %}
