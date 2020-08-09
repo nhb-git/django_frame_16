@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse
+from django.contrib import messages
 
 from app01.forms.login import LoginForm
 
@@ -20,8 +21,10 @@ def login(request):
                     response.set_cookie('usercolor', user_color.encode('utf-8'))
             except:
                 pass
+            messages.add_message(request, messages.SUCCESS, message)
             return response
         else:
+            messages.add_message(request, messages.SUCCESS, '登录失败')
             return render(request, 'app01/login.html', {'login_form': login_form})
     login_form = LoginForm()
     username = request.COOKIES.get('username')

@@ -1,0 +1,35 @@
+<!-- index.html -->
+{% extends 'app01/layout.html' %}
+
+{% load static %}
+{% load rbac %}
+
+{% block custom_css %}
+    <style>
+        .content {
+            width: 100%;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <div class="left-menu">
+            <div class="menu-body">
+                {% static_menu request %}
+            </div>
+        </div>
+        <div class="right-body">
+            <div class="system-message">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissable" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div>
+                <span style="font-size: 20px; vertical-align: center">任务系统</span>
+            </div>
+        </div>
+    </div>
+{% endblock %}

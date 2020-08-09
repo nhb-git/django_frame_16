@@ -1,0 +1,66 @@
+<!-- host_detail.html -->
+{% extends 'app01/layout.html' %}
+{% load rbac %}
+
+{% block content %}
+    <div class="content">
+        <div class="left-menu">
+            <div class="menu-body">
+                {% static_menu request %}
+            </div>
+        </div>
+        <div class="right-body">
+            <div class="system-message">
+                {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissable" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            </div>
+            <div class="host-info">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>主机ID</th>
+                            <th>主机名称</th>
+                            <th>主机ip</th>
+                            <th>主机owner</th>
+                            <th>更新时间</th>
+                            <th>选项</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for host in hosts_info %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ host.name }}</td>
+                                <td>{{ host.ip }}</td>
+                                <td>{{ host.owner.username }}</td>
+                                <td>{{ host.created_time|date:"Y-m-d H:i:s" }}</td>
+                                <td>
+                                    <a href="#"><i class="fas fa-info"></i></a>
+                                    {% if request|has_permission:'host_edit' or request|has_permission:'host_del' %}
+                                        &nbsp&nbsp|&nbsp&nbsp
+                                    {% endif %}
+                                    {% if request|has_permission:'host_edit' %}
+                                        <a style="color: #333333;" href="#">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                    {% endif %}
+                                    {% if request|has_permission:'host_edit' and request|has_permission:'host_del' %}
+                                        &nbsp&nbsp|&nbsp&nbsp
+                                    {% endif %}
+                                    {% if request|has_permission:'host_del' %}
+                                        <a style="color: #d9534f" href="#">
+                                            <i class="fas fa-times"></i>
+                                        </a>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}

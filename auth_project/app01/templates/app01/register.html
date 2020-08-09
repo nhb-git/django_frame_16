@@ -1,0 +1,93 @@
+<!-- register.html -->
+{% extends "app01/layout.html" %}
+
+{% block title %}
+    注册
+{% endblock %}
+
+{% block custom_css %}
+    <style>
+        .login_btn {
+            margin-right: 20px;
+        }
+
+        .error {
+            color: red;
+        }
+
+        .content {
+            width: 100%;
+        }
+
+        .content .row {
+            margin: 10% 0 auto;
+            width: 100%;
+        }
+    </style>
+{% endblock %}
+
+{% block header %}
+    <div class="header">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Project</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <a class="btn btn-success navbar-btn pull-right login_btn" href="{% url 'app01:login' %}">登录</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+{% endblock %}
+
+{% block content %}
+    <div class="content">
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <form action="." method="post" novalidate>
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+                        {{ form.username }}
+                        <span class="help-block error pull-right">{{ form.username.errors.0 }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                        {{ form.email }}
+                        <span class="help-block error pull-right">{{ form.email.errors.0 }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.mobile.id_for_label }}">{{ form.mobile.label }}</label>
+                        {{ form.mobile }}
+                        <span class="help-block error pull-right">{{ form.mobile.errors.0 }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.password.id_for_label }}">{{ form.password.label }}</label>
+                        {{ form.password }}
+                        <span class="help-block error pull-right">{{ form.password.errors.0 }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.re_password.id_for_label }}">{{ form.re_password.label }}</label>
+                        {{ form.re_password }}
+                        <span class="help-block error pull-right">{{ form.re_password.errors.0 }}</span>
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ form.captcha.id_for_label }}">{{ form.captcha.label }}</label>
+                        {{ form.captcha }}
+                        <span class="help-block error pull-right">{{ form.captcha.errors.0 }}</span>
+                    </div>
+                    <button type="submit" class="btn btn-success">注册</button>
+                </form>
+            </div>
+        </div>
+    </div>
+{% endblock %}

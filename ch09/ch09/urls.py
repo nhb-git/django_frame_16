@@ -20,4 +20,5 @@ from app01.views import login
 urlpatterns = [
     path('admin/', admin.site.urls),
     re_path('login/$', login),
+    re_path(r'^accounts/', include('registration.backends.default.urls')),
 ]

@@ -1,0 +1,59 @@
+<!-- layout.html -->
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    {% block meta %}
+    {% endblock %}
+
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+    <link rel="stylesheet" href="/static/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'fontawesome-5/css/all.css' %}">
+    <link rel="stylesheet" href="{% static 'app01/css/rbac.css' %}">
+
+    <!-- custom css style -->
+    {% block custom_css %}
+    {% endblock %}
+</head>
+<body>
+{% block header %}
+    <div class="header">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapse" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{% url 'app01:index' %}"><span
+                            class="fas fa-balance-scale fa-1x"></span></a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <a class="btn btn-success navbar-btn pull-right login_btn" href="{% url 'app01:logout' %}">注销</a>
+                </div>
+            </div>
+        </nav>
+    </div>
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block footer %}
+{% endblock %}
+
+<script src="/static/js/jquery.min.js"></script>
+<script src="/static/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+{% block custom_script %}
+{% endblock %}
+</body>
+</html>

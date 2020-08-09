@@ -1,0 +1,43 @@
+html, body{
+    margin: 0;
+    padding: 0;
+}
+.navbar{
+    margin-bottom: 0;
+}
+
+.left-menu{
+    width: 10%;
+    height: 300px;
+    display: inline-block;
+}
+
+.left-menu .menu-body .static-menu .icon-wrap{
+    width: 80px;
+    height: 37px;
+    line-height: 37px;
+    display: inline-block;
+}
+
+.left-menu .menu-body .static-menu a {
+    text-decoration: none;
+    padding: 8px 15px;
+    border-bottom: 1px solid gray;
+    color: #333;
+    display: block;
+    /*background: #efefef;*/
+    /*background-color: white;*/
+    /*background: -webkit-gradient(linear, left bottom, left top, color-stop(0, #efefef), color-stop(1, #fafafa));*/
+    /*background: -ms-linear-gradient(bottom, #efefef, #fafafa);*/
+    /*background: -moz-linear-gradient(center bottom, #efefef 0%, #fafafa 100%);*/
+    /*background: -o-linear-gradient(bottom, #efefef, #fafafa);*/
+    /*filter: progid:dximagetransform.microsoft.gradient(startColorStr='#e3e3e3', EndColorStr='#ffffff');*/
+    /*-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#fafafa',EndColorStr='#efefef')";*/
+    /*box-shadow: inset 0px 1px 1px white;*/
+}
+
+.content .right-body{
+    width: 89%;
+    margin: 0;
+    display: inline-block;
+}
